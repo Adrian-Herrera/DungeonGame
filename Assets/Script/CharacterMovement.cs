@@ -5,33 +5,29 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-
+    [Header("Horizontal Movement")]
     [SerializeField]
     private float _maximumSpeed = 5f;
     [SerializeField]
-    private float _jumpHeight = 2f;
-    [SerializeField]
-    private float _dashTime;
-    [SerializeField]
-    private float _dashSpeed;
-    [SerializeField]
-    private float _groundDistance = 0.2f;
-    [SerializeField]
     private float _rotationSpeed = 720;
+    [Header("Vertical Movement")]
     [SerializeField]
     private bool _isGrounded = true;
+    [SerializeField]
+    private float _jumpHeight = 2f;
+    [SerializeField]
+    private float Gravity = -9.81f;
+    [SerializeField]
+    private float ySpeed;
+    [SerializeField]
+    private readonly float _groundDistanceChecker = 0.2f;
     [SerializeField]
     private LayerMask Ground;
     [SerializeField]
     private Transform _groundChecker;
+    [Header("Camera")]
     [SerializeField]
     private Transform cameraTransform;
-    [SerializeField]
-    private Vector3 Drag;
-
-    private float Gravity = -9.81f;
-    [SerializeField]
-    private float ySpeed;
     private bool _isJumping;
     private Vector3 _velocity;
     private CharacterController _controller;
@@ -47,11 +43,6 @@ public class CharacterMovement : MonoBehaviour
         Move();
         Jump();
         Attack();
-
-
-        // _velocity.x /= 1 + Drag.x * Time.deltaTime;
-        // _velocity.y /= 1 + Drag.y * Time.deltaTime;
-        // _velocity.z /= 1 + Drag.z * Time.deltaTime;
 
         _controller.Move(_velocity * Time.deltaTime);
     }
@@ -77,7 +68,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Jump()
     {
-        _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundDistance, Ground, QueryTriggerInteraction.Ignore);
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, _groundDistanceChecker, Ground, QueryTriggerInteraction.Ignore);
         animator.SetBool("IsGrounded", _isGrounded);
         if (_isGrounded && ySpeed < 0)
         {
@@ -110,29 +101,10 @@ public class CharacterMovement : MonoBehaviour
             // StartCoroutine(DashCoroutine());
         }
     }
-    private void Dash()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("Dash");
-            // _velocity += Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime)));
-            // StartCoroutine(DashCoroutine());
-        }
-    }
-    private IEnumerator DashCoroutine()
-    {
-        float startTime = Time.time; // need to remember this to know how long to dash
-        while (Time.time < startTime + _dashTime)
-        {
-            _controller.Move(transform.forward * _dashSpeed * Time.deltaTime);
-            // or controller.Move(...), dunno about that script
-            yield return null; // this will make Unity stop here and continue next frame
-        }
-    }
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.DrawSphere(_groundChecker.position, _groundDistance);
+        Gizmos.DrawSphere(_groundChecker.position, _groundDistanceChecker);
         if (_isGrounded)
         {
             Gizmos.color = Color.yellow;

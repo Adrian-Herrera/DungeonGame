@@ -715,7 +715,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237774765}
-  m_LocalRotation: {x: 0.13870117, y: -0.0004531576, z: 0.00006346695, w: 0.9903342}
+  m_LocalRotation: {x: 0.13870117, y: -0.00045317475, z: 0.00006346935, w: 0.9903342}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1448,8 +1448,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maximumSpeed: 5
   _jumpHeight: 2
-  _dashTime: 0
-  _dashSpeed: 0
+  _dashTime: 0.5
+  _dashSpeed: 10
   _groundDistance: 0.5
   _rotationSpeed: 720
   _isGrounded: 1
@@ -1459,6 +1459,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 598921416}
   cameraTransform: {fileID: 330585546}
   Drag: {x: 0, y: 0, z: 0}
+  Gravity: -9.81
   ySpeed: 0
 --- !u!4 &643472729 stripped
 Transform:
@@ -1890,7 +1891,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508496236}
-  m_LocalRotation: {x: 0.1026358, y: -0.0004551769, z: 0.000046965473, w: 0.9947189}
+  m_LocalRotation: {x: 0.1026358, y: -0.00045516834, z: 0.000046964586, w: 0.9947189}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2755,11 +2756,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9200023633023332846}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 7c92c23186542b447b886aa402806c57, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: be3850cae3b4d4f4da81724206f6c010, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2782,7 +2783,7 @@ MonoBehaviour:
   _jumpHeight: 2
   _dashTime: 0.5
   _dashSpeed: 10
-  _groundDistance: 0.5
+  _groundDistance: 0.3
   _rotationSpeed: 720
   _isGrounded: 1
   Ground:
@@ -2791,6 +2792,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 1557559798}
   cameraTransform: {fileID: 330585546}
   Drag: {x: 1, y: 1, z: 1}
+  Gravity: -20
   ySpeed: 0
 --- !u!4 &9200023633023332849 stripped
 Transform:
@@ -2809,10 +2811,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 2.4
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.27, z: 0}

@@ -34,6 +34,10 @@ public class CharacterMovement : MonoBehaviour
     private Animator animator;
     void Start()
     {
+        // ! It should instatiate a player camera, I am just using the main one as for now.
+        if(!cameraTransform) {
+            cameraTransform = Camera.main.transform;
+        };
         animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
     }
